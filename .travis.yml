@@ -6,8 +6,8 @@ services:
   - docker
 
 before_install:
+  - openssl aes-256-cbc -K $encrypted_0a6446eb3ae3_key -iv $encrypted_0a6446eb3ae3_iv -in ServiceAccountKey.json.enc -out ServiceAccountKey.json -d
   - docker build -t andreasgarvik/docker_with_travis -f Dockerfile.dev .
-  - openssl aes-256-cbc -K $encrypted_7748a1005700_key -iv $encrypted_7748a1005700_iv -in ServiceAccountKey.json.enc -out ServiceAccountKey.json -d
 
 script:
   - docker run -e CI=true andreasgarvik/docker_with_travis npm run test -- --watchAll=false
