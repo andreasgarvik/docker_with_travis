@@ -9,7 +9,7 @@ before_install:
   - docker build -t andreasgarvik/docker_with_travis -f Dockerfile.dev .
   - openssl aes-256-cbc -K $encrypted_7748a1005700_key -iv $encrypted_7748a1005700_iv -in ServiceAccountKey.json.enc -out ServiceAccountKey.json -d
 
-  script:
+script:
   - docker run -e CI=true andreasgarvik/docker_with_travis npm run test -- --watchAll=false
 
 deploy:
